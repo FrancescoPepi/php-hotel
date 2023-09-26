@@ -94,21 +94,51 @@
     />
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+        <form action="./" method="get">
+      <!-- FILTRO PARCHEGGIO -->
+  <select name="parcheggio" class="w-25 my-3 form-select" aria-label="Default select example">
+    <option selected>Parcheggio</option>
+    <option value="true">si</option>
+    <option value="false">no</option>
+  </select>
+<!-- TABELLA -->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">NAME</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">PARKING</th>
+      <th scope="col">VOTE</th>
+      <th scope="col">DISTANCE TO CENTER</th>
+    </tr>
+  </thead>
+  <tbody>
     <?php foreach ($hotels as $hotel) { ?>
-      <ul>
-        <?php   foreach ($hotel as $key => $value) { ?>
-          <li>
-            <?php if ($key == 'parking' && $value==true): {
-              $value='si';
-            } ?>
-            <?php elseif($key == 'parking' && $value==false) : {
-              $value='no';
-            } ?>
-            <?php endif ?>
-          <?php  echo $key.': '.$value; ?>
-          </li>
-        <?php } ?>
-      </ul>
+      <tr>
+      <td><?php echo $hotel['name'] ?></td>
+      <td><?php echo $hotel['description'] ?></td>
+      <td>
+        <i class="<?php echo $hotel['parking']
+        ?'fa-regular fa-circle-check'
+        :'fa-regular fa-circle-xmark' ?>" 
+        style="<?php echo $hotel['parking']
+        ?'color: #4dff00;'
+        :'color: #ff0000;' ?>"></i>
+        </td>
+      <td><?php echo $hotel['vote'].'/5' ?></td>
+      <td><?php echo $hotel['distance_to_center'].' km' ?></td>
+    </tr>
       <?php  } ?>
-  </body>
+
+  </tbody>
+</table>
+        </form>
+
+
+      </div>
+    </div>
+
+
 </html>
